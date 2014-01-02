@@ -65,6 +65,7 @@ package{
         private function registerExternalMethods():void{
             
             try{
+                ExternalInterface.addCallback("vjs_purgeBuffer", onPurgeBufferCalled);
                 ExternalInterface.addCallback("vjs_appendBuffer", onAppendBufferCalled);
                 ExternalInterface.addCallback("vjs_echo", onEchoCalled);
                 ExternalInterface.addCallback("vjs_getProperty", onGetPropertyCalled);
@@ -178,6 +179,10 @@ package{
 
             // write the bytes to the provider
             _app.model.appendBuffer(bytes);
+        }
+
+        private function onPurgeBufferCalled():void{
+            _app.model.purgeBuffer();
         }
         
         private function onEchoCalled(pResponse:* = null):*{

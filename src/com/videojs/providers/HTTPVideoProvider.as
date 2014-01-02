@@ -12,7 +12,8 @@ package com.videojs.providers{
     import flash.media.Video;
     import flash.net.NetConnection;
     import flash.net.NetStream;
-    import flash.utils.ByteArray;
+import flash.net.NetStreamAppendBytesAction;
+import flash.utils.ByteArray;
     import flash.utils.Timer;
     import flash.utils.getTimer;
 
@@ -57,6 +58,12 @@ package com.videojs.providers{
             _throughputTimer = new Timer(250, 0);
             _throughputTimer.addEventListener(TimerEvent.TIMER, onThroughputTimerTick);
 
+        }
+
+        public function purgeBuffer():void {
+            if(_ns) {
+                _ns.appendBytesAction( NetStreamAppendBytesAction.RESET_SEEK );
+            }
         }
 
         public function get bufferLength():Number{

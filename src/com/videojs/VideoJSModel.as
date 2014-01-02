@@ -122,6 +122,13 @@ package com.videojs{
                 broadcastEvent(new VideoPlaybackEvent(VideoJSEvent.BACKGROUND_COLOR_SET, {}));
             }
         }
+
+        public function purgeBuffer():void{
+            if(_provider is HTTPVideoProvider)
+            {
+                (_provider as HTTPVideoProvider).purgeBuffer();
+            }
+        }
         
         public function get backgroundAlpha():Number{
             return _backgroundAlpha;
