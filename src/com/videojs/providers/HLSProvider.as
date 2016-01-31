@@ -107,7 +107,7 @@ package com.videojs.providers{
           _position = event.mediatime.position;
           _bufferedTime = event.mediatime.buffer+event.mediatime.position;
           _backBufferedTime = event.mediatime.position - event.mediatime.backbuffer;
-          
+
           if(event.mediatime.duration != _duration) {
             _duration = event.mediatime.duration;
             _model.broadcastEventExternally(ExternalEventName.ON_DURATION_CHANGE, _duration);
@@ -256,7 +256,7 @@ package com.videojs.providers{
         public function get networkState():int {
           return _networkState;
         }
-        
+
        /**
          * Should return an array of normalized time ranges currently
          * buffered of the media, in seconds.
@@ -548,7 +548,7 @@ package com.videojs.providers{
          */
         public function get level():int
         {
-            return _hls['level'];
+            return _hls['currentLevel'];
         }
 
         /**
@@ -558,7 +558,7 @@ package com.videojs.providers{
          */
         public function set level(pLevel:int):void
         {
-            _hls['level'] = pLevel;
+            _hls['currentLevel'] = pLevel;
 
             // For reflecting new level from the next segment. Otherwise, new setting is applied only after currently buffered data is gone.
             if (!isNaN(_position) && pLevel != -1) {
@@ -571,7 +571,7 @@ package com.videojs.providers{
           */
         public function get autoLevelEnabled():Boolean
         {
-            return _hls['autolevel'];
+            return _hls['autoLevel'];
         }
     }
 }
